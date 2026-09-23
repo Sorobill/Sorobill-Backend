@@ -22,3 +22,12 @@ npm run dev
 ```
 
 API listens on port **3001** by default.
+
+## Health checks
+
+```bash
+docker compose exec postgres pg_isready -U postgres
+docker compose exec redis redis-cli ping
+```
+
+Expect `accepting connections` and `PONG`.
