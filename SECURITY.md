@@ -40,3 +40,8 @@ events. Reject bodies that fail timing-safe comparison.
 
 Set `APP_FRONTEND_URL` to your real merchant UI (production:
 `https://sorobill-app.vercel.app`). Do not leave wildcard CORS in production.
+
+## Indexer write surface
+
+Treat `POST /indexer/ingest` as privileged. Wallet auth in production prevents
+unauthenticated flooding of mirrored events that dashboards trust.
