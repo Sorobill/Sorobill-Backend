@@ -10,3 +10,15 @@ Content-Type: application/json
 ```http
 GET /api/v1/indexer/events?limit=50
 ```
+
+## Poll
+
+```http
+POST /api/v1/indexer/poll
+Content-Type: application/json
+
+{"startLedger": 123456}
+```
+
+Omitting `startLedger` polls roughly the last 50 ledgers for the configured
+subscription contract.
