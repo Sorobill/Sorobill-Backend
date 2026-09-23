@@ -21,3 +21,8 @@ Skipped in non-production when headers are absent. Required in production.
 
 - **Production** (`NODE_ENV=production`): all three headers required; missing → `401`.
 - **Non-production**: missing headers skip auth (local demos). Present headers are always verified.
+
+## Side effects
+
+Successful verification upserts a `Wallet` row with `isVerified: true` and
+attaches `walletAddress` on the request for downstream handlers.
