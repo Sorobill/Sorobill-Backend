@@ -7,4 +7,12 @@ describe("clamp", () => {
     expect(clamp(-1, 0, 10)).toBe(0);
     expect(clamp(99, 0, 10)).toBe(10);
   });
+
+  it("returns min when equal to min", () => {
+    expect(clamp(0, 0, 10)).toBe(0);
+  });
+
+  it("returns max when equal to max", () => {
+    expect(clamp(10, 0, 10)).toBe(10);
+  });
 });
