@@ -12,6 +12,7 @@ export function verifyWebhookSignature(
   const expected = signWebhookPayload(secret, body);
   const a = Buffer.from(expected, "utf8");
   const b = Buffer.from(signature, "utf8");
+  // Length check avoids timingSafeEqual throw; still constant-time on equal lengths.
   if (a.length !== b.length) return false;
   return timingSafeEqual(a, b);
 }
