@@ -52,3 +52,8 @@ Production frontend: [https://sorobill-app.vercel.app](https://sorobill-app.verc
 
 Point `APP_FRONTEND_URL` at that origin in production deployments so CORS and
 docs stay consistent with the live Sorobill App.
+
+## Scheduler tip
+
+Billing only runs when `src/scheduler.ts` is up. Without it, due subscriptions
+accumulate until a worker/processBillingCycle path is triggered manually.
