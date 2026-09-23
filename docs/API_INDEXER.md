@@ -22,3 +22,11 @@ Content-Type: application/json
 
 Omitting `startLedger` polls roughly the last 50 ledgers for the configured
 subscription contract.
+
+## Filter by type
+
+```http
+GET /api/v1/indexer/events?limit=20&type=payment_executed
+```
+
+`type` matches stored topic strings from the contract event catalog.
