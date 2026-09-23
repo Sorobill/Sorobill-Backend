@@ -8,4 +8,9 @@ describe("safeJsonParse", () => {
   it("returns fallback on invalid json", () => {
     expect(safeJsonParse("nope", { ok: false })).toEqual({ ok: false });
   });
+}
+  it("parses nested objects", () => {
+    expect(safeJsonParse('{"a":{"b":1}}', {})).toEqual({ a: { b: 1 } });
+  });
+
 });
