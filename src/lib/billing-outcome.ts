@@ -13,5 +13,6 @@ export function parseBillingOutcome(result: unknown): "Paid" | "Failed" | null {
     if ("Paid" in (result as object)) return "Paid";
     if ("Failed" in (result as object)) return "Failed";
   }
+  // Callers should treat null as "unknown outcome" and fail closed (no Paid).
   return null;
 }
