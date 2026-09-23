@@ -31,3 +31,13 @@ docker compose exec redis redis-cli ping
 ```
 
 Expect `accepting connections` and `PONG`.
+
+## Resetting local data
+
+```bash
+docker compose down -v
+docker compose up -d
+npx prisma db push
+```
+
+`-v` removes named volumes (Postgres data). Use only on disposable local DBs.
