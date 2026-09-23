@@ -15,3 +15,8 @@ Optional:
 `DATABASE_URL` must point at Postgres 14+. Local docker-compose uses
 `postgresql://postgres:password@localhost:5432/sorobill`. Run
 `npx prisma db push` (or migrate) after changing the schema.
+
+## Redis
+
+`REDIS_URL` backs BullMQ billing and webhook workers. Default
+`redis://localhost:6379` matches `docker compose`. Enable AUTH in production.
