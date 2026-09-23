@@ -14,4 +14,8 @@ describe("amount helpers", () => {
   it("sums amounts", () => {
     expect(sumAmounts(["1", "2.5", "0.5"])).toBe("4");
   });
+
+  it("includes Invalid amount in error message", () => {
+    expect(() => parseAmount("abc")).toThrow(/Invalid amount/);
+  });
 });
