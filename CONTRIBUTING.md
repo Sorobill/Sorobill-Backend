@@ -208,3 +208,8 @@ Open a [GitHub Discussion](https://github.com/Sorobill/Sorobill-Backend/discussi
 
 Doc-only PRs should still follow conventional commits (`docs: …`). Prefer one
 focused topic per commit so reviews stay scannable.
+
+## Verify before push
+
+Run `npm run verify` (generate + test + typecheck) before opening a PR that
+touches `src/`. Doc-only changes may skip generate if Prisma is unchanged.
