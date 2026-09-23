@@ -11,3 +11,10 @@ When you add or change a route under `src/routes/`:
 1. Update `docs/openapi.yaml` in the same PR
 2. Bump `info.version` only for breaking or notable releases
 3. Prefer concrete `schema` objects over free-form descriptions
+
+## Notable paths
+
+- `/indexer/ingest`, `/indexer/events`, `/indexer/poll`
+- `/billing/due`
+- `/merchants/{address}/plans`, `/merchants/{address}/stats`
+- `/plans`, `/subscriptions`
