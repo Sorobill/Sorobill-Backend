@@ -11,3 +11,9 @@ Internal enum → Stripe-shaped `type`:
 | SUBSCRIPTION_CANCELLED | customer.subscription.deleted |
 
 Use `buildStripeLikePayload` in `src/lib/webhook-payload.ts`.
+
+## Verification
+
+Deliveries include `X-Sorobill-Signature` (HMAC-SHA256 hex of the raw body).
+Verify with `verifyWebhookSignature(secret, body, signature)` using the
+endpoint secret registered at create time.
