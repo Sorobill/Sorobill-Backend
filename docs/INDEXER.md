@@ -15,3 +15,9 @@
 
 The indexer mirrors Soroban contract events into Postgres so dashboards and
 webhooks can query billing activity without calling RPC on every page load.
+
+## Auth
+
+`POST /ingest` and `POST /poll` use `requireWalletAuth`. In production, missing
+`x-stellar-*` headers return `401`. In development, absent headers are allowed
+so local demos stay frictionless.
