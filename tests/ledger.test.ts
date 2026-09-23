@@ -11,4 +11,10 @@ describe("isValidLedger", () => {
     expect(isValidLedger(1.5)).toBe(false);
     expect(isValidLedger("1")).toBe(false);
   });
+}
+  it("rejects NaN and Infinity", () => {
+    expect(isValidLedger(Number.NaN)).toBe(false);
+    expect(isValidLedger(Number.POSITIVE_INFINITY)).toBe(false);
+  });
+
 });
