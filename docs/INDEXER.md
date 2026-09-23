@@ -10,3 +10,8 @@
 
 ## Poller
 `pollSorobanEvents` reads the last ~50 ledgers (or an explicit `startLedger`), filters the configured subscription contract, and upserts known topics into Postgres. Safe to run from cron or the authenticated `/poll` route.
+
+## Purpose
+
+The indexer mirrors Soroban contract events into Postgres so dashboards and
+webhooks can query billing activity without calling RPC on every page load.
