@@ -20,20 +20,20 @@ export async function requireWalletAuth(
 
   if (!address || !message || !signature) {
     if (process.env.NODE_ENV === "production") {
-      reply.status(401).send({ error: "Wallet auth headers required" });
+      reply.status(401).send({ error: "Wallet auth headers required", code: "WALLET_AUTH_REQUIRED", hint: "Send x-stellar-address, x-stellar-message, and x-stellar-signature" });
       return;
     }
     return; // allow unauthenticated in non-production
   }
 
   if (typeof address !== "string" || typeof message !== "string" || typeof signature !== "string") {
-    reply.status(400).send({ error: "Invalid auth headers" });
+    reply.status(400).send({ error: "Invalid auth headers", code: "WALLET_AUTH_INVALID_HEADERS" });
     return;
   }
 
   const valid = verifySignedMessage(address, message, signature);
   if (!valid) {
-    reply.status(401).send({ error: "Invalid wallet signature" });
+    reply.status(401).send({ error: "Invalid wallet signature", code: "WALLET_AUTH_BAD_SIGNATURE" });
     return;
   }
 
