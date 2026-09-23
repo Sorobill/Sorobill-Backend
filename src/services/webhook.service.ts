@@ -101,7 +101,7 @@ export async function deliverWebhook(deliveryId: string): Promise<void> {
       },
     });
 
-    logger.warn({ deliveryId, responseStatus }, "Webhook delivery failed");
+    logger.warn({ deliveryId, responseStatus, endpointId: delivery.endpoint.id, eventType: delivery.event.type }, "Webhook delivery failed");
     throw err;
   }
 }
