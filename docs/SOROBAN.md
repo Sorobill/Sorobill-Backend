@@ -21,3 +21,9 @@ Billing path:
 
 When `TEST_MODE=true`, billing skips submitting real Soroban transactions.
 Use this for local demos and CI smoke paths without needing funded keys.
+
+## Contract plan link
+
+Subscriptions must have `contractPlanId` set to use `execute_billing`.
+Plans created via the API can store the on-chain plan id returned from
+`create_plan` / merchant onboarding flows.
