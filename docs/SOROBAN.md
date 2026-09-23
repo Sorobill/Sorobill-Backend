@@ -27,3 +27,9 @@ Use this for local demos and CI smoke paths without needing funded keys.
 Subscriptions must have `contractPlanId` set to use `execute_billing`.
 Plans created via the API can store the on-chain plan id returned from
 `create_plan` / merchant onboarding flows.
+
+## Failure handling
+
+Failed `execute_billing` outcomes map to `PAYMENT_FAILED` webhooks and enter
+the grace / retry loop controlled by `GRACE_PERIOD_HOURS` and
+`MAX_PAYMENT_RETRIES`.
