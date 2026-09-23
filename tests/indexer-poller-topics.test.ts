@@ -15,4 +15,12 @@ describe("topicSymbol", () => {
     expect(topicSymbol(null)).toBeNull();
     expect(topicSymbol(42)).toBeNull();
   });
+
+  it("extracts sym field from SDK objects", () => {
+    expect(topicSymbol({ sym: "sub_paused" })).toBe("sub_paused");
+  });
+
+  it("returns null for empty objects", () => {
+    expect(topicSymbol({})).toBeNull();
+  });
 });
