@@ -63,6 +63,7 @@ export async function pollSorobanEvents(startLedger?: number): Promise<PollResul
   let ingested = 0;
   for (const ev of response.events ?? []) {
     const topics = (ev.topic ?? []) as unknown[];
+    // Skip undecodable first topics; known-but-unexpected types still ingest for dashboards.
     const type = topicSymbol(topics[0]) ?? "unknown";
     if (!isKnownChainEventType(type) && type === "unknown") continue;
 
