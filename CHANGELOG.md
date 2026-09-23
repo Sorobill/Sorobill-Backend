@@ -17,3 +17,9 @@
 ### Added
 - Expanded indexer, env, auth, OpenAPI, webhook, Soroban, and testing docs
 - Live UI / `APP_FRONTEND_URL` documentation for https://sorobill-app.vercel.app
+- `parsePageLimit` and `isBlank` helpers
+- Broader unit coverage for pagination, webhooks, billing outcomes, and topics
+
+### Changed
+- Clearer wallet auth and indexer validation error messages
+- Richer webhook delivery success/failure logs
