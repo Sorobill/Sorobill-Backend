@@ -47,3 +47,8 @@ Keep this aligned with the deployed Sorobill-App so browser clients are not bloc
 - `USE_SOROBAN_BILLING=false` — fall back to Horizon payment path
 - `GRACE_PERIOD_HOURS` — hours before cancel after failed payment (default 48)
 - `MAX_PAYMENT_RETRIES` — retry budget (default 3)
+
+## Webhooks
+
+`WEBHOOK_SIGNING_SECRET` defaults to `dev-secret` in code when unset — always
+override in any shared or production environment.
