@@ -11,3 +11,9 @@
 
 ### Changed
 - Wallet auth required on indexer ingest in production
+
+## [Unreleased]
+
+### Added
+- Expanded indexer, env, auth, OpenAPI, webhook, Soroban, and testing docs
+- Live UI / `APP_FRONTEND_URL` documentation for https://sorobill-app.vercel.app
