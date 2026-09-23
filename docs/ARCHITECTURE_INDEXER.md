@@ -10,3 +10,8 @@ dashboards and demos.
 2. **Ingest API** — external watchers push events
 3. **List API** — read model for dashboards
 4. **Validators** — known types / strict mode
+
+## Data flow
+
+RPC/watcher → normalize topic → `ingestChainEvent` → `ChainEvent` table →
+`GET /indexer/events` and optional downstream webhooks.
