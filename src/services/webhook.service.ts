@@ -87,6 +87,11 @@ export async function deliverWebhook(deliveryId: string): Promise<void> {
         attemptCount: { increment: 1 },
       },
     });
+
+    logger.info(
+      { deliveryId, status: res.status, eventType: delivery.event.type },
+      "Webhook delivery succeeded"
+    );
   } catch (err: any) {
     const responseStatus = err?.response?.status;
     const responseBody = String(err?.response?.data ?? err?.message).slice(0, 500);
