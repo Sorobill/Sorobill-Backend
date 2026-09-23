@@ -23,3 +23,8 @@ describe("parseBillingOutcome", () => {
     expect(parseBillingOutcome(42)).toBeNull();
   });
 });
+
+  it("parses _tag field used by some SDK shapes", () => {
+    expect(parseBillingOutcome({ _tag: "Paid" })).toBe("Paid");
+    expect(parseBillingOutcome({ _tag: "Failed" })).toBe("Failed");
+  });
