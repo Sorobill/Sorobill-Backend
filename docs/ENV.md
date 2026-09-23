@@ -40,3 +40,10 @@ Keep this aligned with the deployed Sorobill-App so browser clients are not bloc
 | `STELLAR_TREASURY_SECRET_KEY` | Signs `execute_billing` (must be contract admin) |
 | `SOROBAN_RPC_URL` | Event polling + tx submit |
 | `STELLAR_NETWORK` | `testnet` or `mainnet` |
+
+## Billing flags
+
+- `TEST_MODE=true` — skip real chain submits (dry-run billing)
+- `USE_SOROBAN_BILLING=false` — fall back to Horizon payment path
+- `GRACE_PERIOD_HOURS` — hours before cancel after failed payment (default 48)
+- `MAX_PAYMENT_RETRIES` — retry budget (default 3)
