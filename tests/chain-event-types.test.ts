@@ -8,4 +8,11 @@ describe("chain-event-types", () => {
   it("rejects unknown topics", () => {
     expect(isKnownChainEventType("nope")).toBe(false);
   });
+}
+  it("accepts plan and subscription lifecycle topics", () => {
+    expect(isKnownChainEventType("plan_created")).toBe(true);
+    expect(isKnownChainEventType("sub_cancelled")).toBe(true);
+    expect(isKnownChainEventType("subscribed")).toBe(true);
+  });
+
 });
