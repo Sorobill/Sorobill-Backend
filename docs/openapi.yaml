@@ -108,6 +108,10 @@ paths:
         - in: query
           name: limit
           schema: { type: integer, maximum: 200 }
+        - in: query
+          name: type
+          schema: { type: string }
+          description: Filter by chain event topic
       responses:
         "200":
           description: Event list
