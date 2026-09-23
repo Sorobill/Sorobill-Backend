@@ -16,3 +16,8 @@ Billing path:
 2. Worker calls `processBillingCycle`
 3. If `contractPlanId` is set → `executeSorobanBilling` → `execute_billing`
 4. Webhook `PAYMENT_SUCCESS` / failure handling follows
+
+## TEST_MODE
+
+When `TEST_MODE=true`, billing skips submitting real Soroban transactions.
+Use this for local demos and CI smoke paths without needing funded keys.
