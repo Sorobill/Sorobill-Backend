@@ -45,3 +45,10 @@ curl -s -X POST http://localhost:3001/api/v1/merchants/G.../plans \
 
 - [Sorobill-Contract](https://github.com/Sorobill/Sorobill-Contract)
 - [Sorobill-App](https://github.com/Sorobill/Sorobill-App) — live UI: [https://sorobill-app.vercel.app](https://sorobill-app.vercel.app)
+
+## Live merchant UI
+
+Production frontend: [https://sorobill-app.vercel.app](https://sorobill-app.vercel.app)
+
+Point `APP_FRONTEND_URL` at that origin in production deployments so CORS and
+docs stay consistent with the live Sorobill App.
