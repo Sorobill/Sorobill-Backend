@@ -6,3 +6,8 @@ Prefer exact topic strings (`payment_executed`, `sub_cancelled`, …).
 ## Polling
 
 Use `POST /api/v1/indexer/poll` (wallet auth) to pull recent contract events into `ChainEvent`.
+
+## Known topics
+
+See `CHAIN_EVENT_TYPES` in `src/lib/chain-event-types.ts` for the allow-list:
+`plan_*`, `subscribed`, `sub_*`, `payment_executed`, `payment_failed`.
