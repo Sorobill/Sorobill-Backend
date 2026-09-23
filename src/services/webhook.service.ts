@@ -21,7 +21,10 @@ export async function emitWebhookEvent(
     where: { isActive: true, events: { has: type } },
   });
 
-  if (!endpoints.length) return;
+  if (!endpoints.length) {
+    logger.debug({ type }, "No active webhook endpoints for event type");
+    return;
+  }
 
   const event = await prisma.webhookEvent.create({
     data: { type, paymentId, payload: asInputJson(payload) ?? {} },
