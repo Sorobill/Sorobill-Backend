@@ -67,6 +67,7 @@ export async function pollSorobanEvents(startLedger?: number): Promise<PollResul
     const type = topicSymbol(topics[0]) ?? "unknown";
     if (!isKnownChainEventType(type) && type === "unknown") continue;
 
+    // Events without a tx hash cannot be upserted idempotently — skip rather than invent keys.
     const txHash = ev.txHash;
     if (!txHash) continue;
 
