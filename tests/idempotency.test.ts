@@ -7,3 +7,14 @@ describe("billingIdempotencyKey", () => {
     expect(key).toBe("sub_1:2026-01-01T00:00:00.000Z");
   });
 });
+
+  it("changes when period end changes", () => {
+    const a = billingIdempotencyKey("sub_1", new Date("2026-01-01T00:00:00.000Z"));
+    const b = billingIdempotencyKey("sub_1", new Date("2026-02-01T00:00:00.000Z"));
+    expect(a).not.toBe(b);
+  });
+
+  it("isolates different subscriptions in the same period", () => {
+    const end = new Date("2026-01-01T00:00:00.000Z");
+    expect(billingIdempotencyKey("sub_a", end)).not.toBe(billingIdempotencyKey("sub_b", end));
+  });
