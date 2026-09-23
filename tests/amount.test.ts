@@ -18,10 +18,9 @@ describe("amount helpers", () => {
   it("includes Invalid amount in error message", () => {
     expect(() => parseAmount("abc")).toThrow(/Invalid amount/);
   });
-}
+
   it("rejects empty amount strings", () => {
     expect(() => parseAmount("")).toThrow(/empty value/);
     expect(() => parseAmount("   ")).toThrow(/empty value/);
   });
-
 });
