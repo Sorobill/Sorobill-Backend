@@ -16,3 +16,8 @@ Indexer list uses max 200.
 
 `GET /api/v1/indexer/events` calls `clampLimit(limit, 50, 200)` so dashboards
 can request larger pages than the default REST max of 100.
+
+## parsePageLimit
+
+`parsePageLimit(limit, { fallback, max })` wraps `clampLimit` for route handlers.
+Use `{ max: 200 }` on indexer list endpoints.
