@@ -31,3 +31,12 @@ Optional:
 | Production | `https://sorobill-app.vercel.app` |
 
 Keep this aligned with the deployed Sorobill-App so browser clients are not blocked.
+
+## Stellar / Soroban
+
+| Variable | Role |
+|---|---|
+| `SUBSCRIPTION_CONTRACT_ID` | Deployed subscription contract |
+| `STELLAR_TREASURY_SECRET_KEY` | Signs `execute_billing` (must be contract admin) |
+| `SOROBAN_RPC_URL` | Event polling + tx submit |
+| `STELLAR_NETWORK` | `testnet` or `mainnet` |
