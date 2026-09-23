@@ -21,3 +21,8 @@ npx vitest run tests/webhook-crypto.test.ts
 npx vitest run tests/pagination.test.ts
 npx vitest run tests/billing-outcome.test.ts
 ```
+
+## Coverage expectations
+
+Prefer pure helpers under `src/lib/` for unit tests. Service tests that need
+Prisma/Redis should stay integration-scoped and offline-safe where possible.
