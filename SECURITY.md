@@ -35,3 +35,8 @@ We will acknowledge your report within 48 hours and aim to release a fix within 
 
 Always verify `X-Sorobill-Signature` with the endpoint secret before acting on
 events. Reject bodies that fail timing-safe comparison.
+
+## Frontend origin
+
+Set `APP_FRONTEND_URL` to your real merchant UI (production:
+`https://sorobill-app.vercel.app`). Do not leave wildcard CORS in production.
