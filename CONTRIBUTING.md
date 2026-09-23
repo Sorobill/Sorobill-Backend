@@ -203,3 +203,8 @@ For large changes, open a discussion first before writing code — it saves ever
 ## Questions?
 
 Open a [GitHub Discussion](https://github.com/Sorobill/Sorobill-Backend/discussions) or reach out in the community channel.
+
+## Documentation PRs
+
+Doc-only PRs should still follow conventional commits (`docs: …`). Prefer one
+focused topic per commit so reviews stay scannable.
