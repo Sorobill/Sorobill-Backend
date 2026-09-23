@@ -14,6 +14,7 @@ export interface IngestEventInput {
 }
 
 export async function ingestChainEvent(input: IngestEventInput) {
+  // Upsert key is normalized txHash so retries and dual pollers stay idempotent.
   const payload = asInputJson(input.payload) ?? {};
   return prisma.chainEvent.upsert({
     where: { txHash: normalizeTxHash(input.txHash) },
