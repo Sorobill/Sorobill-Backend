@@ -21,3 +21,8 @@ webhooks can query billing activity without calling RPC on every page load.
 `POST /ingest` and `POST /poll` use `requireWalletAuth`. In production, missing
 `x-stellar-*` headers return `401`. In development, absent headers are allowed
 so local demos stay frictionless.
+
+## Errors
+
+Unknown event types are rejected when `strict` is true (default). Pass
+`strict: false` only for exploratory mirroring of experimental topics.
