@@ -21,3 +21,15 @@ describe("webhook-crypto", () => {
     expect(verifyWebhookSignature("other", body, sig)).toBe(false);
   });
 });
+
+  it("rejects signatures with mismatched length", () => {
+    const body = "{}";
+    expect(verifyWebhookSignature("sec", body, "ab")).toBe(false);
+  });
+
+  it("rejects empty signature", () => {
+    const body = "{}";
+    const sig = signWebhookPayload("sec", body);
+    expect(verifyWebhookSignature("sec", body, "")).toBe(false);
+    expect(sig).not.toBe("");
+  });
