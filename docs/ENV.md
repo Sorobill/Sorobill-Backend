@@ -9,3 +9,9 @@ Required for billing + indexer:
 
 Optional:
 - `APP_FRONTEND_URL` — merchant UI origin (`https://sorobill-app.vercel.app` in production)
+
+## Database
+
+`DATABASE_URL` must point at Postgres 14+. Local docker-compose uses
+`postgresql://postgres:password@localhost:5432/sorobill`. Run
+`npx prisma db push` (or migrate) after changing the schema.
