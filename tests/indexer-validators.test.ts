@@ -15,4 +15,9 @@ describe("assertIngestableType", () => {
     expect(() => assertIngestableType("plan_deactivated", true)).not.toThrow();
     expect(() => assertIngestableType("plan_reactivated", true)).not.toThrow();
   });
+}
+  it("mentions strict:false in the unknown-type error", () => {
+    expect(() => assertIngestableType("custom_topic", true)).toThrow(/strict:false/);
+  });
+
 });
