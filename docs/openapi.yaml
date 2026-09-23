@@ -112,6 +112,21 @@ paths:
         "200":
           description: Event list
 
+  /indexer/poll:
+    post:
+      summary: Poll Soroban RPC for recent contract events
+      description: Requires wallet auth headers in production. Optional startLedger.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                startLedger: { type: integer }
+      responses:
+        "200":
+          description: Upsert summary
+
 components:
   schemas:
     CreatePlan:
