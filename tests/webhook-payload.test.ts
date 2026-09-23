@@ -20,4 +20,15 @@ describe("webhook-payload", () => {
     expect(evt.created).toBe(Math.floor(created.getTime() / 1000));
     expect(evt.data.object).toEqual({ amount: "10" });
   });
+}
+  it("maps payment failed and subscription lifecycle", () => {
+    expect(toStripeLikeType("PAYMENT_FAILED")).toBe("invoice.payment_failed");
+    expect(toStripeLikeType("SUBSCRIPTION_CREATED")).toBe("customer.subscription.created");
+    expect(toStripeLikeType("SUBSCRIPTION_UPDATED")).toBe("customer.subscription.updated");
+  });
+
+  it("falls back to dotted lowercase for unknown types", () => {
+    expect(toStripeLikeType("CUSTOM_EVENT")).toBe("custom.event");
+  });
+
 });
