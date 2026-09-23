@@ -1,5 +1,8 @@
 /** Convert decimal amount string to stroops-like integer string for display/math helpers. */
 export function parseAmount(amount: string): number {
+  if (typeof amount !== "string" || amount.trim() === "") {
+    throw new Error(`Invalid amount: empty value`);
+  }
   const n = Number(amount);
   if (!Number.isFinite(n) || n < 0) throw new Error(`Invalid amount: ${amount}`);
   return n;
