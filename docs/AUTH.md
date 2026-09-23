@@ -16,3 +16,8 @@ Skipped in non-production when headers are absent. Required in production.
 | `x-stellar-address` | G… public key |
 | `x-stellar-message` | UTF-8 message that was signed |
 | `x-stellar-signature` | Base64-encoded ed25519 signature |
+
+## Production vs development
+
+- **Production** (`NODE_ENV=production`): all three headers required; missing → `401`.
+- **Non-production**: missing headers skip auth (local demos). Present headers are always verified.
