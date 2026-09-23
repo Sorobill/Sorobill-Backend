@@ -30,3 +30,8 @@ We will acknowledge your report within 48 hours and aim to release a fix within 
 - **Redis** — enable Redis AUTH and bind to localhost or a private network only.
 - **HTTPS** — always terminate TLS at the load balancer in production. Never run the API on plain HTTP in production.
 - **Rate limiting** — the default is 100 req/min. Tighten this for public-facing deployments.
+
+## Webhook authenticity
+
+Always verify `X-Sorobill-Signature` with the endpoint secret before acting on
+events. Reject bodies that fail timing-safe comparison.
