@@ -32,3 +32,11 @@ endpoint secret registered at create time.
   "livemode": false
 }
 ```
+
+## Delivery headers
+
+| Header | Meaning |
+|---|---|
+| `X-Sorobill-Signature` | HMAC hex of body |
+| `X-Sorobill-Event` | Internal event enum (e.g. `PAYMENT_SUCCESS`) |
+| `Content-Type` | `application/json` |
