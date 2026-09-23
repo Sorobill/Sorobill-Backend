@@ -11,3 +11,8 @@ Indexer list uses max 200.
 | `75` | `75` (floored) |
 | `500` with max 100 | `100` |
 | `"12.9"` | `12` |
+
+## Indexer list
+
+`GET /api/v1/indexer/events` calls `clampLimit(limit, 50, 200)` so dashboards
+can request larger pages than the default REST max of 100.
