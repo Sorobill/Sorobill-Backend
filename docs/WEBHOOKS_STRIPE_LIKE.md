@@ -17,3 +17,18 @@ Use `buildStripeLikePayload` in `src/lib/webhook-payload.ts`.
 Deliveries include `X-Sorobill-Signature` (HMAC-SHA256 hex of the raw body).
 Verify with `verifyWebhookSignature(secret, body, signature)` using the
 endpoint secret registered at create time.
+
+## Payload shape
+
+`buildStripeLikePayload` wraps data as:
+
+```json
+{
+  "id": "evt_<id>",
+  "object": "event",
+  "type": "invoice.paid",
+  "created": 1710000000,
+  "data": { "object": { } },
+  "livemode": false
+}
+```
