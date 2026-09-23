@@ -20,3 +20,14 @@ Optional:
 
 `REDIS_URL` backs BullMQ billing and webhook workers. Default
 `redis://localhost:6379` matches `docker compose`. Enable AUTH in production.
+
+## Frontend URL
+
+`APP_FRONTEND_URL` is the merchant UI origin used in CORS notes and demos.
+
+| Environment | Value |
+|---|---|
+| Local | `http://localhost:3000` |
+| Production | `https://sorobill-app.vercel.app` |
+
+Keep this aligned with the deployed Sorobill-App so browser clients are not blocked.
