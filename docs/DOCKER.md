@@ -41,3 +41,11 @@ npx prisma db push
 ```
 
 `-v` removes named volumes (Postgres data). Use only on disposable local DBs.
+
+## Image build
+
+```bash
+docker build -t sorobill-backend .
+```
+
+The Dockerfile runs `prisma generate` and compiles TypeScript to `dist/`.
