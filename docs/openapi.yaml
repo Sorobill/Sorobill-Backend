@@ -109,14 +109,54 @@ paths:
       parameters:
         - in: query
           name: limit
-          schema: { type: integer, maximum: 200 }
+          schema:
+            type: integer
+            maximum: 200
+            default: 50
+          example: 20
         - in: query
           name: type
-          schema: { type: string }
-          description: Filter by chain event topic
+          schema:
+            type: string
+          description: Filter by chain event topic (e.g. payment_executed, subscribed, payment_failed)
+          example: payment_executed
       responses:
         "200":
-          description: Event list
+          description: List of mirrored on-chain events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ChainEvent"
+              examples:
+                recentEvents:
+                  summary: Recent payment_executed chain events
+                  value:
+                    - id: "clux8h7b8000108l412345678"
+                      type: "payment_executed"
+                      contractId: "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC"
+                      txHash: "4f7a3bc5d91e6b8c9a0f2e3d4c5b6a7890123456789abcdef0123456789abcde"
+                      ledger: 512080
+                      payload:
+                        topics:
+                          - "payment_executed"
+                          - "GBZXN7PIRZGNMHGA728VY3CV2MHLA4KZ62EBQVAISKJN52DII4IO7C6T"
+                          - "1"
+                        value: "10000000"
+                      createdAt: "2026-10-05T14:00:00.000Z"
+                    - id: "clux8h7b8000208l487654321"
+                      type: "subscribed"
+                      contractId: "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC"
+                      txHash: "3e6b2ac4c80d5a7b8f9e1d2c3b4a567890123456789abcdef0123456789abcdf"
+                      ledger: 512075
+                      payload:
+                        topics:
+                          - "subscribed"
+                          - "GBZXN7PIRZGNMHGA728VY3CV2MHLA4KZ62EBQVAISKJN52DII4IO7C6T"
+                          - "1"
+                        value: null
+                      createdAt: "2026-10-05T13:58:30.000Z"
 
   /indexer/poll:
     post:
@@ -128,10 +168,43 @@ paths:
             schema:
               type: object
               properties:
-                startLedger: { type: integer }
+                startLedger:
+                  type: integer
+                  description: Ledger sequence number to start polling from
+            examples:
+              withStartLedger:
+                summary: Poll starting from a specific ledger sequence
+                value:
+                  startLedger: 512030
+              defaultWindow:
+                summary: Poll within the default trailing window (latest - 50 ledgers)
+                value: {}
       responses:
         "200":
           description: Upsert summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PollResult"
+              examples:
+                eventsIngested:
+                  summary: Poller found and ingested new events
+                  value:
+                    polled: true
+                    ingested: 3
+                    latestLedger: 512080
+                zeroEvents:
+                  summary: Poller executed cleanly with no new events
+                  value:
+                    polled: true
+                    ingested: 0
+                    latestLedger: 512030
+                skippedTestMode:
+                  summary: Poller skipped due to test mode or missing contract config
+                  value:
+                    polled: false
+                    ingested: 0
+                    reason: "SUBSCRIPTION_CONTRACT_ID not set"
 
 components:
   schemas:
@@ -152,3 +225,49 @@ components:
           enum: [DAILY, WEEKLY, MONTHLY, YEARLY]
         contractPlanId:
           type: integer
+
+    ChainEvent:
+      type: object
+      required: [id, type, contractId, txHash, payload, createdAt]
+      properties:
+        id:
+          type: string
+          description: Unique database record identifier
+        type:
+          type: string
+          description: On-chain event topic symbol
+        contractId:
+          type: string
+          description: Soroban contract address
+        txHash:
+          type: string
+          description: Normalized transaction hash
+        ledger:
+          type: integer
+          nullable: true
+          description: Stellar ledger sequence number
+        payload:
+          type: object
+          description: Structured event payload containing topics and decoded values
+        createdAt:
+          type: string
+          format: date-time
+          description: Ingestion timestamp
+
+    PollResult:
+      type: object
+      required: [polled, ingested]
+      properties:
+        polled:
+          type: boolean
+          description: Whether Soroban RPC polling was actively executed
+        ingested:
+          type: integer
+          description: Count of chain events ingested and upserted
+        latestLedger:
+          type: integer
+          description: Highest ledger sequence observed during this poll run
+        reason:
+          type: string
+          description: Diagnostic reason when polling is skipped
+
