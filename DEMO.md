@@ -16,6 +16,8 @@ docker compose up -d
 cp .env.example .env
 # Set STELLAR_TREASURY_SECRET_KEY and SUBSCRIPTION_CONTRACT_ID (from Sorobill-Contract DEPLOYMENTS.md)
 # Keep TEST_MODE=true for dry runs without chain fees
+# See docs/ENV.md (Contributor ENV Cheat Sheet) for required vs optional variables:
+# https://github.com/Sorobill/Sorobill-Backend/blob/main/docs/ENV.md#contributor-env-cheat-sheet
 
 # 3. DB
 npm install

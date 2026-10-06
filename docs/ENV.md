@@ -1,6 +1,30 @@
-# Environment
+# Environment & Configuration
 
-Required for billing + indexer:
+## Contributor ENV Cheat Sheet
+
+A compact reference for all environment variables used by the Sorobill Backend.
+
+| Variable | Required for `npm run verify`? | Required for Local Dev? | Default / Example Value | Description & Guidance |
+|---|:---:|:---:|---|---|
+| `DATABASE_URL` | **No** | **Yes** | `postgresql://postgres:password@localhost:5432/sorobill` | PostgreSQL connection string for Prisma ORM |
+| `REDIS_URL` | **No** | **Yes** (workers) | `redis://localhost:6379` | Redis broker instance for BullMQ billing & webhook queues |
+| `TEST_MODE` | **No** | **Optional** | `true` | When `true`, executes dry-run billing without sending chain transactions |
+| `STELLAR_NETWORK` | **No** | **Optional** | `testnet` | Target Stellar network (`testnet` or `mainnet`) |
+| `STELLAR_HORIZON_URL` | **No** | **Optional** | `https://horizon-testnet.stellar.org` | Horizon HTTP REST endpoint for account balances & trustlines |
+| `STELLAR_NETWORK_PASSPHRASE` | **No** | **Optional** | `Test SDF Network ; September 2015` | Stellar network passphrase for transaction envelope signing |
+| `STELLAR_TREASURY_SECRET_KEY` | **No** | **Yes** (chain ops) | `S...` | Admin secret key authorizing `execute_billing` invocations |
+| `SOROBAN_RPC_URL` | **No** | **Optional** | `https://soroban-testnet.stellar.org` | Soroban JSON-RPC endpoint for ledger events and contract state |
+| `SUBSCRIPTION_CONTRACT_ID` | **No** | **Yes** (chain ops) | `CDENNEELMOUKIJGCSQUQ535FP53KRKNYA2PO7TOCI6O6IZVWZBYFML4W` | Address of deployed Sorobill contract (from `DEPLOYMENTS.md`) |
+| `WEBHOOK_SIGNING_SECRET` | **No** | **Optional** | `your-webhook-signing-secret-min-32-chars` | HMAC secret for signing outgoing webhook events to merchants |
+| `APP_FRONTEND_URL` | **No** | **Optional** | `http://localhost:3000` | Merchant UI origin for CORS headers (`https://sorobill-app.vercel.app` in prod) |
+
+> 💡 **Pre-PR / CI Gate**: `npm run verify` runs static analysis, TypeScript type checking, and unit tests with mocked interfaces. None of the live service credentials are required to run `npm run verify`.
+
+---
+
+## Detailed Variable Sections
+
+Required for full billing + indexer run:
 - `DATABASE_URL`
 - `REDIS_URL`
 - `SUBSCRIPTION_CONTRACT_ID`
