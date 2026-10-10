@@ -178,7 +178,7 @@ All configuration is via environment variables. Copy `.env.example` to `.env`.
 
 ## API Reference
 
-Full reference: **[docs/API.md](docs/API.md)**
+Full reference: **[docs/API.md](docs/API.md)** | **[cURL Recipes](docs/CURL_RECIPES.md)**
 
 ### Base URL
 
