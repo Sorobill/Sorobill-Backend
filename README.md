@@ -113,6 +113,16 @@ npx tsx src/scheduler.ts
 
 The API is now running at `http://localhost:3000`.
 
+### 6. Run tests & verification
+
+```bash
+# Generate Prisma client and run test suite
+npm run test:ci
+
+# Full pre-push verification (generate + test + typecheck)
+npm run verify
+```
+
 ---
 
 ## Project Structure

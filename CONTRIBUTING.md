@@ -162,11 +162,17 @@ docs(api): add wallet verification example
 Tests live alongside source files or in a `__tests__/` directory.
 
 ```bash
-# Run all tests
+# Run tests with fresh Prisma client generation (recommended after fresh clone)
+npm run test:ci
+
+# Run test suite directly
 npm test
 
 # Watch mode
 npm run test:watch
+
+# Full pre-PR verification (generate + test + typecheck)
+npm run verify
 ```
 
 We use [Vitest](https://vitest.dev/). When adding a feature, include:
